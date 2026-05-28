@@ -36,6 +36,7 @@ commit-plan-and-split 기준 커밋 분할
 - React/Vite 프론트엔드 기본 앱 구성
 - Kotlin Spring Boot 백엔드 기본 앱 구성
 - feature-based + DDD 구조 생성
+- Figma `Web / Dashboard`, `Web / Schedule` 기준 화면 골격 연결
 
 산출물:
 
@@ -83,6 +84,8 @@ commit-plan-and-split 기준 커밋 분할
 - 수업 이동/취소
 - 강사/장소 충돌 검사
 - 수강생 배정
+- Figma 시간표 동시간대 표시 규칙 반영
+- Figma 부분 겹침 레이아웃 알고리즘 반영
 
 산출물:
 
