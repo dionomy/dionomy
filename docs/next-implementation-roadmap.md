@@ -16,9 +16,10 @@
 - 원장 운영 웹 주요 정적 화면
 - 수강생/강사/관리자 주요 정적 화면
 - 일정, 수강생, 수강권, 출석, 결석, 클래스노트, 공지, 회사 웹, 관리자 세팅 API 골격
-- 백엔드 JPA/Flyway 연결 확인
-- 백엔드 API는 대부분 인메모리 저장소 사용
-- 프론트엔드는 대부분 정적 화면이며 API 연동 전
+- 백엔드 JPA/Flyway/PostgreSQL 영속화 전환
+- 프론트 공통 API client와 TanStack Query 기반 구축
+- 원장 주요 화면 읽기 API 연결
+- 학원 설정 저장 API 연결
 
 검증된 것:
 
@@ -309,8 +310,8 @@ commit-plan-and-split 기준 커밋 분할
 
 가장 먼저 진행할 작업:
 
-1. 백엔드 JPA/Flyway 영속화 전환
-2. 프론트 API client/React Query 기반 구축
-3. 일정/수업 CRUD 연동
+1. 프론트 write interaction 연결
+2. 일정/수업 운영 핵심 완성
+3. 강사 모드와 수강생 앱/PWA 실제 데이터 연결
 
-이 순서로 진행해야 정적 화면이 실제 운영 앱으로 전환된다.
+세부 체크리스트는 `docs/h-milestone-implementation-plan.md`를 기준으로 진행한다.
