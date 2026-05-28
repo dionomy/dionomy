@@ -1,5 +1,7 @@
 # MVP 구현 로드맵
 
+현재 구현 이후의 세부 실행 계획은 `docs/next-implementation-roadmap.md`를 기준으로 한다.
+
 ## 진행 방식
 
 각 단계는 다음 루프로 진행한다.
