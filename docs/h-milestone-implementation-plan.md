@@ -43,7 +43,7 @@ root submodule 포인터 커밋
 - [x] 출석 체크 연결
 - [x] 결석 신청 연결
 - [x] 결석 승인/거절 연결
-- [ ] 공통 form loading/error/disabled 상태 정리
+- [x] 공통 form loading/error/disabled 상태 정리
 
 검증:
 
