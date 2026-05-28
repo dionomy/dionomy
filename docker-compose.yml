@@ -1,0 +1,20 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: dionomy-postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: dionomy
+      POSTGRES_USER: dionomy
+      POSTGRES_PASSWORD: dionomy
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U dionomy -d dionomy"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+    volumes:
+      - dionomy-postgres-data:/var/lib/postgresql/data
+
+volumes:
+  dionomy-postgres-data:
