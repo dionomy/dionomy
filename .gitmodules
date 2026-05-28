@@ -1,7 +1,7 @@
 [submodule "frontend"]
 	path = frontend
-	url = git@github.com:USER/dionomy-frontend.git
+	url = https://github.com/dionomy/dionomy-front.git
 
 [submodule "backend"]
 	path = backend
-	url = git@github.com:USER/dionomy-backend.git
+	url = https://github.com/dionomy/dionomy-back.git
