@@ -8,6 +8,7 @@ build/
 out/
 .idea/
 .vscode/
+.serena/
 *.iml
 .gradle/
 target/
