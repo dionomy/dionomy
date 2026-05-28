@@ -7,13 +7,42 @@
 - file key: `QBT0ND6Qxl5IbJfSjNj0GS`
 - 기준 page node: `1:3`
 - page name: `Screens`
+- 디자인 시스템 page node: `0:1`
+- 디자인 시스템 page name: `Design System`
 
 ## 사용 원칙
 
 - 구현 전 해당 화면의 Figma frame id를 먼저 확인한다.
+- 화면 구현 전 `Design System(0:1)`의 토큰과 공통 컴포넌트 기준을 먼저 확인한다.
 - React 구현 시 Figma frame 이름을 화면/feature 기준으로 매핑한다.
+- CSS 토큰은 Figma의 `--color-*`, `--radius-*` 이름을 우선 사용한다.
 - 와이어프레임은 초기 IA 참고용으로만 사용하고, 실제 UI 구현은 `Web / ...` 프레임과 규칙 프레임을 우선한다.
 - 시간표 구현은 별도 규칙 프레임의 동시간대/부분 겹침 규칙을 반드시 반영한다.
+
+## 디자인 시스템 연결
+
+기준 URL: `https://www.figma.com/design/QBT0ND6Qxl5IbJfSjNj0GS/Dionomy?node-id=0-1&m=dev`
+
+| Figma frame | Node ID | 구현 기준 |
+| --- | --- | --- |
+| `Design System` | `0:1` | 전체 디자인 시스템 페이지 |
+| `Color Palette` | `28:5` | Radix 12-step 색상 토큰. brand는 화이트라벨 override |
+| `Component: Mobile ListRow` | `149:11` | 모바일 터치 리스트 행, 64pt 높이 |
+| `Component: Mobile StatCard` | `149:126` | 모바일 KPI 카드, 175pt x 96pt |
+| `Component: Mobile SegmentedControl` | `149:151` | 모바일 pill 탭, 36pt 높이 |
+| `Component: Mobile PageHeader` | `148:5` | 모바일 sticky page header, 56pt 높이 |
+| `Component: Mobile SectionHeader` | `148:21` | 모바일 섹션 타이틀 + 전체보기 링크 |
+| `Component: Mobile SearchBar` | `148:32` | 모바일 검색 입력, 40pt 높이 |
+| `Component: Mobile FAB` | `148:42` | 모바일 56pt 원형 floating action button |
+
+핵심 토큰:
+
+- brand: `--color-brand-1`부터 `--color-brand-12`, 기본 solid는 `--color-brand-9 #5B5BD6`
+- neutral: `--color-neutral-1`부터 `--color-neutral-12`
+- success: `--color-success-1`부터 `--color-success-12`
+- danger: `--color-danger-1`부터 `--color-danger-12`
+- warning: `--color-warning-1`부터 `--color-warning-12`
+- semantic alias: `--color-bg-app`, `--color-bg-subtle`, `--color-bg-element`, `--color-border-subtle`, `--color-border-default`, `--color-text-primary`, `--color-text-secondary`, `--color-text-brand`
 
 ## 주요 프레임 목록
 
