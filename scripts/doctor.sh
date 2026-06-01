@@ -23,6 +23,12 @@ fail() {
 }
 
 add_action() {
+  for action in "${actions[@]}"; do
+    if [[ "$action" == "$1" ]]; then
+      return
+    fi
+  done
+
   actions+=("$1")
 }
 
@@ -129,6 +135,7 @@ if [[ "$DIONOMY_DATABASE_URL" == *":5432/"* ]]; then
   ok "DB URL 포트 5432"
 else
   warn "DB URL 포트 확인 필요: $DIONOMY_DATABASE_URL"
+  add_action ".env의 DIONOMY_DATABASE_URL 포트 확인"
 fi
 
 print ""
@@ -150,6 +157,7 @@ if has_command docker && docker compose ps postgres >/dev/null 2>&1; then
   fi
 else
   warn "Docker compose postgres 상태 확인 실패"
+  add_action "Docker Desktop 실행 후 just db-up"
 fi
 
 print ""
@@ -159,13 +167,48 @@ for port label in 5173 frontend 8080 backend 5432 postgres 35729 livereload; do
     ok "$label 포트 $port 사용 중"
   else
     warn "$label 포트 $port 미사용"
+    case "$label" in
+      frontend)
+        add_action "just frontend-dev"
+        ;;
+      backend)
+        add_action "just backend-dev"
+        ;;
+      postgres)
+        add_action "just db-up"
+        ;;
+      livereload)
+        add_action "백엔드 devtools LiveReload가 필요하면 just backend-dev"
+        ;;
+    esac
   fi
 done
 
 print ""
 print "프로젝트 파일"
-[[ -x backend/gradlew ]] && ok "backend/gradlew 실행 가능" || fail "backend/gradlew 실행 불가"
-[[ -d frontend/node_modules ]] && ok "frontend/node_modules 존재" || warn "frontend/node_modules 없음"
+if [[ -x backend/gradlew ]]; then
+  ok "backend/gradlew 실행 가능"
+else
+  fail "backend/gradlew 실행 불가"
+  add_action "chmod +x backend/gradlew"
+fi
+if [[ -f frontend/package.json ]]; then
+  ok "frontend/package.json 존재"
+else
+  fail "frontend/package.json 없음"
+  add_action "frontend 서브모듈 상태 확인"
+fi
+
+if [[ -d frontend/node_modules ]]; then
+  ok "frontend/node_modules 존재"
+else
+  warn "frontend/node_modules 없음"
+  if [[ -f frontend/package-lock.json ]]; then
+    add_action "cd frontend && npm ci"
+  else
+    add_action "cd frontend && npm install"
+  fi
+fi
 
 print ""
 if (( ${#actions[@]} > 0 )); then
