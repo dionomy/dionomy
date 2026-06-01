@@ -91,6 +91,7 @@ features/schedule/
 - Kotlin
 - Spring Boot
 - Gradle
+- Java 21
 - PostgreSQL
 - Redis
 - Flyway
@@ -98,6 +99,15 @@ features/schedule/
 - OpenAPI
 - JPA 또는 jOOQ
 - Testcontainers
+
+### 로컬 Java 실행 기준
+
+백엔드 실행은 Java 21을 기준으로 한다.
+
+루트 `.env`에 `JAVA_HOME`을 지정하면 `backend/justfile`이 해당 JDK를 우선 사용한다.  
+`JAVA_HOME`이 비어 있으면 PATH의 `java`를 사용한다.
+
+asdf는 필수 조건으로 두지 않는다.
 
 ### 구조 원칙
 
