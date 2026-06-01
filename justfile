@@ -6,12 +6,16 @@ default:
 doctor:
     ./scripts/doctor.sh
 
+setup:
+    ./scripts/setup.sh
+
 dev:
     #!/usr/bin/env zsh
     set -e
     set -a
     source .env
     set +a
+    ./scripts/check-dev-ports.sh
     trap 'for pid in $(jobs -p); do kill "$pid" 2>/dev/null || true; done' INT TERM EXIT
     just db-up
     just db-wait
