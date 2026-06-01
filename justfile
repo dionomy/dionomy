@@ -3,6 +3,9 @@ set shell := ["zsh", "-cu"]
 default:
     @just --list
 
+doctor:
+    ./scripts/doctor.sh
+
 dev:
     #!/usr/bin/env zsh
     set -e
