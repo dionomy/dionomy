@@ -70,6 +70,12 @@ else
 fi
 check_command node
 check_command npm
+if has_command curl; then
+  ok "curl 사용 가능"
+else
+  warn "curl 없음"
+  add_action "curl 설치 또는 backend API 수동 확인"
+fi
 
 print ""
 print "Java"
@@ -183,6 +189,31 @@ for port label in 5173 frontend 8080 backend 5432 postgres 35729 livereload; do
     esac
   fi
 done
+
+print ""
+print "Backend API"
+if has_command curl && lsof -nP -iTCP:8080 -sTCP:LISTEN >/dev/null 2>&1; then
+  health_status="$(curl -fsS -m 2 http://localhost:8080/actuator/health 2>/dev/null)"
+  if [[ "$health_status" == *"UP"* ]]; then
+    ok "actuator health UP"
+  else
+    warn "actuator health 응답 실패"
+    add_action "just backend-dev 로그 확인"
+  fi
+
+  settings_status="$(curl -fsS -m 2 -H "X-Tenant-Id: ${DIONOMY_TENANT_ID:-00000000-0000-0000-0000-000000000001}" http://localhost:8080/api/academy/settings 2>/dev/null)"
+  if [[ "$settings_status" == *"mainColor"* ]]; then
+    ok "academy settings API 응답 확인"
+  else
+    warn "academy settings API 응답 실패"
+    add_action "DB 인증/마이그레이션 확인: just backend-dev"
+  fi
+elif has_command curl; then
+  warn "backend API 확인 불가: 8080 미사용"
+  add_action "just backend-dev"
+else
+  warn "backend API 확인 생략: curl 없음"
+fi
 
 print ""
 print "프로젝트 파일"
