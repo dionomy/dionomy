@@ -245,7 +245,7 @@ print ""
 if (( ${#actions[@]} > 0 )); then
   print "권장 조치"
   for action in "${actions[@]}"; do
-    print "- $action"
+    print -- "- $action"
   done
 else
   print "권장 조치 없음"
