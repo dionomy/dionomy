@@ -12,6 +12,9 @@ setup:
 dev:
     ./scripts/dev.sh
 
+seed:
+    ./scripts/seed-dev-data.sh
+
 db-up:
     set -a; source .env; set +a; docker compose up -d postgres
 
