@@ -10,18 +10,7 @@ setup:
     ./scripts/setup.sh
 
 dev:
-    #!/usr/bin/env zsh
-    set -e
-    set -a
-    source .env
-    set +a
-    ./scripts/check-dev-ports.sh
-    trap 'for pid in $(jobs -p); do kill "$pid" 2>/dev/null || true; done' INT TERM EXIT
-    just db-up
-    just db-wait
-    (cd backend && just dev) &
-    (cd frontend && just dev) &
-    wait
+    ./scripts/dev.sh
 
 db-up:
     set -a; source .env; set +a; docker compose up -d postgres
