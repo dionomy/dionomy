@@ -37,8 +37,8 @@ insert into academy_settings (
     crm_enabled
 )
 values
-    ('00000000-0000-0000-0000-000000000002', '리듬앤무브 댄스스튜디오', '02-222-0002', '서울시 마포구 와우산로 12', null, '#1F8A5B', true, false, true, 14, 3, true, true, true, true, true, false, true, true),
-    ('00000000-0000-0000-0000-000000000003', '어반드로잉 클래스', '02-333-0003', '서울시 성동구 왕십리로 45', null, '#D97706', false, false, false, 0, 0, true, true, true, false, true, true, false, true)
+    ('00000000-0000-0000-0000-000000000002', '리듬앤무브 댄스스튜디오', '02-222-0002', '서울시 마포구 와우산로 12', null, '#1F8A5B', true, false, true, 14, 3, true, true, false, true, true, false, true, false),
+    ('00000000-0000-0000-0000-000000000003', '어반드로잉 클래스', '02-333-0003', '서울시 성동구 왕십리로 45', null, '#D97706', false, false, false, 0, 0, true, true, true, false, false, true, false, true)
 on conflict (tenant_id) do update
 set name = excluded.name,
     contact = excluded.contact,
