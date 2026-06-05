@@ -52,3 +52,15 @@ build:
 test:
     cd frontend && just test
     cd backend && just test
+
+deploy-build:
+    set -a; source .env; set +a; docker compose -f docker-compose.prod.yml build
+
+deploy-up:
+    set -a; source .env; set +a; docker compose -f docker-compose.prod.yml up -d
+
+deploy-down:
+    set -a; source .env; set +a; docker compose -f docker-compose.prod.yml down
+
+deploy-logs:
+    docker compose -f docker-compose.prod.yml logs -f --tail=200

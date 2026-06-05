@@ -91,4 +91,5 @@ just build        # frontend 빌드
 - [기술 스택](docs/technical-stack.md)
 - [MVP 구현 로드맵](docs/implementation-roadmap.md)
 - [Figma 화면 연결](docs/figma-screen-map.md)
+- [배포 가이드](docs/deployment.md)
 - [Git 작업 공간 전략](docs/git-workspace-strategy.md)
