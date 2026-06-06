@@ -32,8 +32,8 @@ services:
       interval: 10s
       timeout: 3s
       retries: 12
-    expose:
-      - "8080"
+    ports:
+      - "${DIONOMY_BACKEND_BIND:-127.0.0.1}:${DIONOMY_BACKEND_PORT:-18080}:8080"
 
   frontend:
     build:
@@ -44,7 +44,7 @@ services:
       backend:
         condition: service_healthy
     ports:
-      - "${DIONOMY_HTTP_PORT:-80}:80"
+      - "${DIONOMY_FRONTEND_BIND:-127.0.0.1}:${DIONOMY_FRONTEND_PORT:-18081}:3000"
 
 volumes:
   dionomy-postgres-data:

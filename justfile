@@ -54,7 +54,7 @@ test:
     cd backend && just test
 
 deploy-build:
-    set -a; source .env; set +a; docker compose -f docker-compose.prod.yml build
+    set -a; source .env; set +a; docker compose -f docker-compose.prod.yml build backend frontend
 
 deploy-up:
     set -a; source .env; set +a; docker compose -f docker-compose.prod.yml up -d
